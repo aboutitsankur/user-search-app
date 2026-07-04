@@ -82,15 +82,26 @@ document.querySelector("body").append(cards);
 
 let inp = document.querySelector("input");
 
+let h1 = document.createElement("h1");
+h1.textContent = "No Users found";
+h1.style.color = "White";
+document.querySelector("body").appendChild(h1);
+h1.style.display = "none";
+
 inp.addEventListener("input", function(){
 
     cards.innerHTML = "";
-
     let result = users.filter(function(user){
         return user.name.toLowerCase().includes(inp.value.toLowerCase());
     });
 
-    showUsers(result);
+    if(result.length !== 0){
+        h1.style.display = "none";
+        showUsers(result);
+    }
+    else{
+        h1.style.display = "block";
+    }
 });
 
 
